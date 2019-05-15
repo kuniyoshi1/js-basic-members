@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded',function(){
   
 });
 
-    
+
 
 //入力内容の取得と出力
 
@@ -136,10 +136,30 @@ document.addEventListener('DOMContentLoaded',function(){
     
 //    改行処理を入れる。
     
+    let br = document.createElement('br');
+    
+    list.appendChild(br);
+    
   });
   
   
 //  削除ボタンを作って、追加したanchorを１つづつ削除できるようにする
+  
+  
+  //id取得して、clickした時に処理できるようにする
+  
+  document.getElementById('delbtn').addEventListener('click',function(){
+    
+    //listの子要素に対して削除命令
+    
+//    console.log(list.firstChild);
+    
+    let list = document.getElementById('list');
+    
+    list.removeChild(list.firstChild);
+    
+    
+  });
   
   
 });
