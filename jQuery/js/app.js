@@ -119,33 +119,102 @@ $(function(){
   
   
   
+  //タブメニュー
+  
+  //aタグがクリックされたとき
+  
+  $('.tab-nav a').on('click',function(){
+  
+  //activeクラスがついていれば、処理停止
+    if($(this).hasClass('active')){
+      
+      return false;
+      
+      //これ以降の関数内の処理は停止
+      
+    }
+    
+  //activeを外す
+    
+    $('.tab-nav a').removeClass('active');
+    
+
+  //アクティブをつける
+  
+    $(this).addClass('active');
+    
+    
+    console.log(this.hash);
+    
+    
+    $('.tab-content > div').removeClass('active');
+    
+    $('.tab-content > div').filter(this.hash).addClass('active');
+
+  
+  });
   
   
   
+  //スライダー
+  
+  var slideWidth = $('.slide').outerWidth();
+  
+  var slideNum = $('.slide').length;
+  
+  var slideWrapperWidth = slideWidth * slideNum;
+  
+  var currentSlide = 0;
+  
+  $('.slide-wrapper').css('width', slideWrapperWidth);
+  
+  
+  //次へ
+  
+  $('.next-slider').on('click',function(){
+    
+    //最後のスライドだった場合→return false;
+    
+    if(currentSlide >= slideNum -1){
+    
+      return false;
+    
+    }
+    
+    currentSlide++;
+    
+    slide();
+    
+  });
   
   
   
+  //前へ
+  
+  $('.prev-slider').on('click',function(){
+    
+    if(currentSlide <= 0){
+       
+       return false;
+       
+    }
+       
+    currentSlide--;
+    
+    slide();
+    
+  });
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  function slide(){
+    
+    $('.slide-wrapper').stop().animate({
+      
+      left: currentSlide * -slideWidth
+      
+    });
+    
+  }
   
   
   
